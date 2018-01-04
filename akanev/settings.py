@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'akanev.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'akanev',
+        'NAME': 'webapp',
         'USER': 'django',
         'PASSWORD': 'django',
         'HOST': '',

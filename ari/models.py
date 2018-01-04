@@ -6,7 +6,7 @@ from django.db import models
 class URL(models.Model):
     """This class contains a reference to the URLField.
 
-    It is part of a base of models comprising the Bio app.
+    It is part of a base of models comprising the webapp.
 
     """
 
@@ -20,7 +20,7 @@ class URL(models.Model):
 class Email(models.Model):
     """This class contains a reference to the EmailField.
 
-    It is part of a base of models comprising the Bio app.
+    It is part of a base of models comprising the webapp.
 
     """
 
@@ -34,7 +34,7 @@ class Email(models.Model):
 class Image(models.Model):
     """This class contains a reference to the ImageField.
 
-    It is part of a base of models comprising the Bio app.
+    It is part of a base of models comprising the webapp.
 
     """
 
@@ -46,15 +46,30 @@ class Image(models.Model):
         return self.image.name
 
 
-class Page(models.Model):
-    """This class contains a reference to the CharField.
+class Summary(models.Model):
+    """This class contains a reference to the TextField.
 
-    It also establishes 3 one-to-one db relations for the
-    Image, Email, and URL classes.
+    It is part of a base of models comprising the Page model.
+    A core component of the webapp.
 
     """
 
-    summary = models.TextField()
+    summary = models.TextField(default='insert summary')
+
+    def __str__(self):
+        """Return human readable string of self.summary."""
+        return self.summary
+
+
+class Page(models.Model):
+    """This class contains a reference to the CharField.
+
+    It also establishes 4 one-to-one postgresql db relations for the
+    Summary, Image, Email, and URL classes.
+
+    """
+
+    summary = models.ForeignKey(Summary, on_delete=models.CASCADE)
 
     # one to one
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
@@ -67,4 +82,4 @@ class Page(models.Model):
 
     def __str__(self):
         """Return human readable string of self.summary."""
-        return self.summary
+        return self.Page.readable
