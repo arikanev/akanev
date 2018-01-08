@@ -57,12 +57,12 @@ class Bio(models.Model):
     """
 
     bio = models.TextField(default='Tell us about yourself. \
-                           If you are concerned with internet anonymity, \
-                           consider leaving this blank')
+If you are concerned with internet anonymity, \
+consider leaving this blank.')
 
     def __str__(self):
-        """Return human readable string of self.summary."""
-        return self.summary
+        """Return human readable string of self.bio."""
+        return self.bio
 
 
 class User_ID(models.Model):
@@ -74,9 +74,13 @@ class User_ID(models.Model):
     """
 
     user_id = models.CharField(validators=[RegexValidator(regex='^\w{4,6}$',
-                               message='Length has to be 4',
+                               message='User_ID length: 4-12',
                                code='nomatch')],
                                max_length=6)
+
+    def __str__(self):
+        """Return human readable string of self.user_id."""
+        return self.user_id
 
 
 class User(models.Model):

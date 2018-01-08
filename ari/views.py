@@ -7,7 +7,7 @@ from .models import User
 
 def index(request):
     user = get_list_or_404(User)
-    return render(request, 'ari/index.html', {'user': user})
+    return render(request, 'ari/index.html')
 
 
 def bio(request, user_id):
@@ -33,3 +33,8 @@ def experience(request, user_id):
 def education(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     return render(request, 'ari/education.html', {'user': user})
+
+
+def support(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    return render(request, 'ari/support.html', {'user': user})
